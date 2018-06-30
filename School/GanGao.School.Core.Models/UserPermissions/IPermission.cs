@@ -42,6 +42,6 @@ namespace GanGao.School.Core.Models.UserPermissions
     /// <typeparam name="TKey"></typeparam>
     public interface IPermissionDepartmentRole<TKey> : IPermissionId<TKey>, IDepartmentId<TKey>,IRoleId<TKey> //: IEntityDepartmentRole<TKey> { }
     {
-        SysRole<TKey> Role { get; }
+        
     }
 }
