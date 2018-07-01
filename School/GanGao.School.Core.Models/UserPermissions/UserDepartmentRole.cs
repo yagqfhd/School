@@ -20,15 +20,18 @@ namespace GanGao.School.Core.Models.UserPermissions
         /// 角色ID
         /// </summary>
         public TKey RoleId { get; set; }
-        /// <summary>
-        /// 对应的角色
-        /// </summary>
-        public virtual SysRole<TKey> Role { get; set; }
+        
     }
 
     /// <summary>
     /// 用户部门角色
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public class UserDepartmentRole : UserDepartmentRole<string> { }
+    public class UserDepartmentRole : UserDepartmentRole<string>
+    {
+        /// <summary>
+        /// 对应的角色
+        /// </summary>
+        public virtual SysRole Role { get; set; }
+    }
 }

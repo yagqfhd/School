@@ -26,6 +26,7 @@ namespace GanGao.School.Core.Data.UserPermissions.Configurations
             this.HasIndex(m => m.Email);
             //属性定义
             this.Property(m => m.Id).HasMaxLength(64);
+            //.HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             this.Property(m => m.Name).HasMaxLength(16);
             this.Property(m => m.Email).HasMaxLength(128);
             this.Property(m => m.Description).HasMaxLength(128);
@@ -78,7 +79,7 @@ namespace GanGao.School.Core.Data.UserPermissions.Configurations
         public UserDepartmentRoleConfiguration()
         {
             // 表名次定义
-            this.ToTable("Sys_UserDepartments");
+            this.ToTable("Sys_UserDepartmentRoles");
 
             //主键定义
             this.HasKey((UserDepartmentRole m) => new { UserId = m.UserId, DepartmentId = m.DepartmentId, RoleId = m.RoleId});

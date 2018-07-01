@@ -1,4 +1,6 @@
-﻿namespace GanGao.School.Core.Models.UserPermissions
+﻿using System;
+
+namespace GanGao.School.Core.Models.UserPermissions
 {
     /// <summary>
     /// 角色定义 
@@ -10,7 +12,10 @@
     /// <summary>
     /// 角色定义 
     /// </summary>
-    public class SysRole : SysRole<string> { }
+    public class SysRole : SysRole<string>
+    {
+        public SysRole() { Id = Guid.NewGuid().ToString(); }
+    }
 
 
 }

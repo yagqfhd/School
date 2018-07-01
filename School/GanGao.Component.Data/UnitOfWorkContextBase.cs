@@ -50,7 +50,19 @@ namespace GanGao.Component.Data
             }
             try
             {
-                int result = Context.SaveChanges();
+#if DEBUG
+                int result = 0;
+                try
+                {
+                    result = Context.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                {
+
+                }
+#else
+                int result =  Context.SaveChanges();
+#endif                
                 IsCommitted = true;
                 return result;
             }

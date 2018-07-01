@@ -83,6 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserPermissions\IUserService.cs" />
     <Compile Include="UserPermissions\UserService.cs" />
+    <Compile Include="UserPermissions\Validators\CoreValidator.cs" />
+    <Compile Include="UserPermissions\Validators\IValidator.cs" />
+    <Compile Include="UserPermissions\Validators\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GanGao.Component.Data\GanGao.Component.Data.csproj">

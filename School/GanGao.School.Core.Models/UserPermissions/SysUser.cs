@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 
 namespace GanGao.School.Core.Models.UserPermissions
@@ -32,17 +33,29 @@ namespace GanGao.School.Core.Models.UserPermissions
         public string TrueName { get; set; }        
         #endregion
 
-        /// <summary>
-        /// // 用户部门集合 UserDepartment 表中满足条件的集合
-        /// </summary>
-        public virtual ICollection<UserDepartment<TKey>> Departments { get; }
+        ///// <summary>
+        ///// // 用户部门集合 UserDepartment 表中满足条件的集合
+        ///// </summary>
+        //public virtual ICollection<UserDepartment<TKey>> Departments { get; }
 
-        //public SysUser() { Departments = new HashSet<UserDepartment<TKey>>(); }
-
+        ////public SysUser() { Departments = new HashSet<UserDepartment<TKey>>(); }
+        
     }
     /// <summary>
     /// 用户类
     /// </summary>
-    public class SysUser : SysUser<string> { }
+    public class SysUser : SysUser<string> , IEntityDepartmentCollection<UserDepartment>
+    {
+        /// <summary>
+        /// // 用户部门集合 UserDepartment 表中满足条件的集合
+        /// </summary>
+        public virtual ICollection<UserDepartment> Departments { get; }
+
+        public SysUser()
+        {
+            Id = Guid.NewGuid().ToString();
+            //Departments = new HashSet<UserDepartment>();
+        }
+    }
 
 }

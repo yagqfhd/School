@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 
 namespace GanGao.School.Core.Models.UserPermissions
@@ -25,7 +26,7 @@ namespace GanGao.School.Core.Models.UserPermissions
         public SysPermission()
         {
             this.Departments = new HashSet<PermissionDepartment>();
-
+            this.Id = Guid.NewGuid().ToString();
         }
     }
 }

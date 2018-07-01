@@ -59,5 +59,10 @@ namespace GanGao.Component.Tools
         /// </summary>
         [Description("操作引发错误。")]
         Error,
+        /// <summary>
+        /// 操作失败
+        /// </summary>
+        [Description("操作失败")]
+        Failed,
     }
 }

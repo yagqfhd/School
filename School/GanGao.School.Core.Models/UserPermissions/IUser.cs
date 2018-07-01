@@ -31,7 +31,7 @@ namespace GanGao.School.Core.Models.UserPermissions
         /// <summary>
         /// 用户的部门集合
         /// </summary>
-        ICollection<UserDepartment<TKey>> Departments { get;  }
+       // ICollection<UserDepartment<TKey>> Departments { get;  }
     }
 
     /// <summary>
@@ -49,14 +49,14 @@ namespace GanGao.School.Core.Models.UserPermissions
     /// 用户部门  接口
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public interface IUserDepartment<TKey> : IUserId<TKey>, IDepartmentId<TKey>// IEntityDepartment<TKey> { }
+    public interface IUserDepartment<TKey> : IUserId<TKey>, IDepartmentId<TKey>
     {
         /// <summary>
         /// 本部门实体
         /// </summary>
         SysDepartment<TKey> Department { get; }
         // 所属角色集合
-        ICollection<UserDepartmentRole<TKey>> Roles { get; }
+        //ICollection<UserDepartmentRole<TKey>> Roles { get; }
     }
     /// <summary>
     /// 用户部门角色接口
@@ -64,7 +64,7 @@ namespace GanGao.School.Core.Models.UserPermissions
     /// <typeparam name="TKey"></typeparam>
     public interface IUserDepartmentRole<TKey> : IUserId<TKey>, IDepartmentId<TKey>, IRoleId<TKey>//: IEntityDepartmentRole<TKey> { }
     {
-        SysRole<TKey> Role { get; }
+        //SysRole<TKey> Role { get; }
     }
 
 }

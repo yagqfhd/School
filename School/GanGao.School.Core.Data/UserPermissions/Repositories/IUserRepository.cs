@@ -11,21 +11,21 @@ namespace GanGao.School.Core.Data.UserPermissions.Repositories
     /// <summary>
     ///     仓储操作接口——用户信息
     /// </summary>
-    public interface IUserRepository : IRepository<SysUser<string>>
+    public interface IUserRepository : IRepository<SysUser>
     {
     }
 
     /// <summary>
     ///     仓储操作接口——用户部门信息
     /// </summary>
-    public interface IUserDepartmentRepository : IRepository<UserDepartment<string>>
+    public interface IUserDepartmentRepository : IRepository<UserDepartment>
     {
     }
 
     /// <summary>
     ///     仓储操作接口——用户部门信息
     /// </summary>
-    public interface IUserDepartmentRoleRepository : IRepository<UserDepartmentRole<string>>
+    public interface IUserDepartmentRoleRepository : IRepository<UserDepartmentRole>
     {
     }
 }

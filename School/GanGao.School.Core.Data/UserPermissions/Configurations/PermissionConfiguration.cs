@@ -28,10 +28,10 @@ namespace GanGao.School.Core.Data.UserPermissions.Configurations
             this.Property(m => m.Name).HasMaxLength(16);            
             this.Property(m => m.Description).HasMaxLength(128);
             
-            // 排除字段定义
-            this.Ignore(m => m.AddDate).Ignore(m => m.IsDeleted).Ignore(m => m.Timestamp);
-            //关系映射
-            this.HasMany(m => m.Departments).WithOptional().HasForeignKey(k => k.PermissionId);
+            //// 排除字段定义
+            //this.Ignore(m => m.AddDate).Ignore(m => m.IsDeleted).Ignore(m => m.Timestamp);
+            ////关系映射
+            //this.HasMany(m => m.Departments).WithOptional().HasForeignKey(k => k.PermissionId);
         }
 
         public void RegistTo(ConfigurationRegistrar configurations)
@@ -80,15 +80,16 @@ namespace GanGao.School.Core.Data.UserPermissions.Configurations
             this.ToTable("Sys_PermissionDepartmentRoles");
 
             //主键定义
-            this.HasKey((PermissionDepartmentRole m) => new { PermissionId = m.PermissionId, DepartmentId = m.DepartmentId });
+            this.HasKey((PermissionDepartmentRole m) => new { PermissionId = m.PermissionId, DepartmentId = m.DepartmentId ,RoleId = m.RoleId});
             //索引定义
             this.HasIndex(m => m.PermissionId);
             this.HasIndex(m => m.DepartmentId);
             //属性定义
             this.Property(m => m.PermissionId).HasMaxLength(64);
             this.Property(m => m.DepartmentId).HasMaxLength(64);
+            
             //关系映射
-            this.HasOptional(m => m.Role).WithMany().HasForeignKey(k => new { PermissionId = k.PermissionId, DepartmentId = k.DepartmentId });
+            this.HasRequired(m => m.Role).WithMany().HasForeignKey(k=>k.RoleId);
 
         }
 

@@ -6,6 +6,7 @@ using GanGao.School.Core.Models.UserPermissions;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.IO;
+using GanGao.School.Core.Data.DBInitializes;
 
 namespace School.Test.TestCore.Data
 {
@@ -42,19 +43,21 @@ namespace School.Test.TestCore.Data
 
         public UnitCoreData()
         {
-            
+          //  DatabaseInitializer.Initialize();
         }
 
         [TestMethod]
         public void TestCreateDataBase()
         {
             this.Compose();
+            DatabaseInitializer.Initialize();
             if (userStore == null)
             {
                 Console.WriteLine("Import Error");
                 userStore = new UserRepository();
             }
-            userStore.Insert(new SysUser<string> { Name = "admin" });
+            Console.WriteLine("UserStore Init OK!");
+            userStore.Insert(new SysUser { Name = "admin" },true);
         }
 
         [TestMethod]

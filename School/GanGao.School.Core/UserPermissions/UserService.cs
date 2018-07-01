@@ -1,5 +1,7 @@
 ﻿using GanGao.Component.Tools;
 using GanGao.School.Core.Data.UserPermissions.Repositories;
+using GanGao.School.Core.Models.UserPermissions;
+using GanGao.School.Core.UserPermissions.Validators;
 using GanGao.School.Core.ViewModels.UserPermissions;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,11 @@ namespace GanGao.School.Core.UserPermissions
         [Import]
         protected IUserDepartmentRoleRepository UserDepartmentRoleRepository { get; set; }
 
+        /// <summary>
+        /// 获取或设置 用户信息校验对象
+        /// </summary>
+        [Import]
+        IValidator<SysUser> UserValidator { get; set; }
         #endregion
 
         #endregion
@@ -92,6 +99,39 @@ namespace GanGao.School.Core.UserPermissions
             return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.Success, "登录成功。", user));
         }
 
+        /// <summary>
+        /// 检查用户是否存在
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public virtual Task<OperationResult> ExistsByName(string userName)
+        {
+            PublicHelper.CheckArgument(userName, "userName");
+            //获取用户
+            var user = UserRepository.Entities.SingleOrDefault(m => m.Name == userName);
+            if (user == null)
+            {
+                return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在。"));
+            }
+            return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.Success));
+        }
+
+        /// <summary>
+        /// 检查用户是否存在
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public virtual Task<OperationResult> ExistsByEmail(string emailName)
+        {
+            PublicHelper.CheckArgument(emailName, "userName");
+            //获取用户
+            var user = UserRepository.Entities.SingleOrDefault(m => m.Email == emailName);
+            if (user == null)
+            {
+                return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在。"));
+            }
+            return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.Success));
+        }
         #endregion
     }
 }

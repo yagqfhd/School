@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GanGao.School.Core.Models.UserPermissions
 {
@@ -28,6 +29,9 @@ namespace GanGao.School.Core.Models.UserPermissions
     /// <summary>
     /// 部门定义
     /// </summary>
-    public class SysDepartment : SysDepartment<string> { }
+    public class SysDepartment : SysDepartment<string>
+    {
+        public SysDepartment() { Id = Guid.NewGuid().ToString(); }
+    }
 
 }

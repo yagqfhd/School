@@ -1,8 +1,10 @@
 ﻿using GanGao.Component.Data;
+using GanGao.Component.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace GanGao.School.Core
@@ -17,5 +19,7 @@ namespace GanGao.School.Core
         /// </summary>
         [Import]
         protected IUnitOfWork UnitOfWork { get; set; }
+
+        
     }
 }
