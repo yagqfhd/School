@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GanGao.School.Core.Data.UserPermissions.Repositories
+namespace GanGao.School.Core.Data.Infrastructure
 {
     /// <summary>
     ///     仓储操作接口——用户信息

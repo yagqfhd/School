@@ -1,5 +1,7 @@
 ﻿using GanGao.Component.Tools;
+using GanGao.School.Core.Data.Infrastructure;
 using GanGao.School.Core.Data.UserPermissions.Repositories;
+using GanGao.School.Core.Infrastructure;
 using GanGao.School.Core.Models.UserPermissions;
 using System;
 using System.Collections.Generic;

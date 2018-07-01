@@ -72,6 +72,10 @@
       <Project>{fd27858a-c094-49d0-82b2-3ec60447eca3}</Project>
       <Name>GanGao.Component.Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GanGao.School.Core.Data.Infrastructure\GanGao.School.Core.Data.Infrastructure.csproj">
+      <Project>{86b792a1-6bc1-488c-96c1-2cd85690c258}</Project>
+      <Name>GanGao.School.Core.Data.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GanGao.School.Core.Data\GanGao.School.Core.Data.csproj">
       <Project>{1692008e-0f1b-449a-a1a1-ef3e5c40394e}</Project>
       <Name>GanGao.School.Core.Data</Name>
@@ -83,6 +87,10 @@
     <ProjectReference Include="..\GanGao.School.Core\GanGao.School.Core.csproj">
       <Project>{e2573644-33cf-4180-9334-7ea6e6421c51}</Project>
       <Name>GanGao.School.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GanGao.School.Infrastructure\GanGao.School.Core.Infrastructure.csproj">
+      <Project>{d0247db3-31a3-4302-b474-37b8c00da204}</Project>
+      <Name>GanGao.School.Core.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

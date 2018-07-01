@@ -81,10 +81,9 @@
   <ItemGroup>
     <Compile Include="CoreServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserPermissions\IUserService.cs" />
     <Compile Include="UserPermissions\UserService.cs" />
     <Compile Include="UserPermissions\Validators\CoreValidator.cs" />
-    <Compile Include="UserPermissions\Validators\IValidator.cs" />
+    <Compile Include="UserPermissions\Validators\UserPasswordValidator.cs" />
     <Compile Include="UserPermissions\Validators\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +94,14 @@
     <ProjectReference Include="..\GanGao.Component.Tools\GanGao.Component.Tools.csproj">
       <Project>{fd27858a-c094-49d0-82b2-3ec60447eca3}</Project>
       <Name>GanGao.Component.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GanGao.Hash\GanGao.Hash.csproj">
+      <Project>{6df1e237-57a4-4072-b263-86e3bcb64f21}</Project>
+      <Name>GanGao.Hash</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GanGao.School.Core.Data.Infrastructure\GanGao.School.Core.Data.Infrastructure.csproj">
+      <Project>{86b792a1-6bc1-488c-96c1-2cd85690c258}</Project>
+      <Name>GanGao.School.Core.Data.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\GanGao.School.Core.Data\GanGao.School.Core.Data.csproj">
       <Project>{1692008e-0f1b-449a-a1a1-ef3e5c40394e}</Project>
@@ -107,6 +114,10 @@
     <ProjectReference Include="..\GanGao.School.Core.ViewModels\GanGao.School.Core.ViewModels.csproj">
       <Project>{33040c98-d977-4824-917c-de1955b1965e}</Project>
       <Name>GanGao.School.Core.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GanGao.School.Infrastructure\GanGao.School.Core.Infrastructure.csproj">
+      <Project>{d0247db3-31a3-4302-b474-37b8c00da204}</Project>
+      <Name>GanGao.School.Core.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

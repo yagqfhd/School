@@ -7,6 +7,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.IO;
 using GanGao.School.Core.Data.DBInitializes;
+using GanGao.School.Core.Data.Infrastructure;
 
 namespace School.Test.TestCore.Data
 {

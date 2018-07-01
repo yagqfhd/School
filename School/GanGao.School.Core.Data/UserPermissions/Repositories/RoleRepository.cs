@@ -1,4 +1,5 @@
 ﻿using GanGao.Component.Data;
+using GanGao.School.Core.Data.Infrastructure;
 using GanGao.School.Core.Models.UserPermissions;
 using System;
 using System.Collections.Generic;
