@@ -11,14 +11,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
 using GanGao.Component.Tools;
-
+using System.ComponentModel.Composition;
 
 namespace GanGao.Component.Data
 {

@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
-using System.Web;
+
 
 namespace GanGao.School.Core.Data.UserPermissions.Configurations
 {

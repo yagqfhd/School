@@ -33,7 +33,7 @@ namespace GanGao.Component.Data
             get { return EFDbContext; }
         }
 
-        [Import(typeof (DbContext))]
+        [Import("DbContext")]
         private EFDbContext EFDbContext { get; set; }
     }
 }

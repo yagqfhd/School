@@ -11,21 +11,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
-
 using GanGao.Component.Tools;
-
+using System.ComponentModel.Composition;
 
 namespace GanGao.Component.Data
 {
     /// <summary>
     ///     EF数据访问上下文
     /// </summary>
-    [Export(typeof (DbContext))]
+    [Export("DbContext",typeof(EFDbContext))]
     public class EFDbContext : DbContext
     {
         public EFDbContext()
@@ -34,7 +32,7 @@ namespace GanGao.Component.Data
         public EFDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString) { }
 
-        [ImportMany(typeof(IEntityMapper))]
+        [ImportMany]
         public IEnumerable<IEntityMapper> EntityMappers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
 ﻿using GanGao.Component.Tools;
+using GanGao.Component.Data;
 using GanGao.Hash;
 using GanGao.School.Core.Data.Infrastructure;
 using GanGao.School.Core.Data.UserPermissions.Repositories;
@@ -8,10 +9,11 @@ using GanGao.School.Core.UserPermissions.Validators;
 using GanGao.School.Core.ViewModels.UserPermissions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
+
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.ComponentModel.Composition;
 
 namespace GanGao.School.Core.UserPermissions
 {
@@ -142,12 +144,12 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="loginInfo">登录信息</param>
         /// <returns>业务操作结果</returns>
-        public virtual Task<OperationResult> Login(UserLoginInfoViewInput loginInfo)
+        public virtual Task<OperationResult> LoginAsync(UserLoginInfoViewInput loginInfo)
         {
             PublicHelper.CheckArgument(loginInfo, "loginInfo");
             ///说明，这里配置了可以同时使用帐号，邮箱登录
             //获取用户并检验密码
-            var user = this.FindUser(loginInfo.Access, loginInfo.Password);
+            var user = this.FindUserAsync(loginInfo.Access, loginInfo.Password);
             if (user == null)
             {
                 return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在或者密码错误。"));
@@ -163,12 +165,12 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="loginInfo">登录信息</param>
         /// <returns>业务操作结果</returns>
-        public virtual Task<OperationResult> Logout(UserLoginInfoViewInput loginInfo)
+        public virtual Task<OperationResult> LogoutAsync(UserLoginInfoViewInput loginInfo)
         {
             PublicHelper.CheckArgument(loginInfo, "loginInfo");
             ///说明，这里配置了可以同时使用帐号，邮箱登录
             //获取用户并检验密码
-            var user = this.FindUser(loginInfo.Access, loginInfo.Password);
+            var user = this.FindUserAsync(loginInfo.Access, loginInfo.Password);
             if (user == null)
             {
                 return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在或者密码错误。"));
@@ -184,7 +186,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public virtual Task<OperationResult> ExistsByName(string userName)
+        public virtual Task<OperationResult> ExistsByNameAsync(string userName)
         {
             PublicHelper.CheckArgument(userName, "userName");
             //获取用户
@@ -201,7 +203,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public virtual Task<OperationResult> ExistsByEmail(string emailName)
+        public virtual Task<OperationResult> ExistsByEmailAsync(string emailName)
         {
             PublicHelper.CheckArgument(emailName, "userName");
             //获取用户
@@ -219,7 +221,7 @@ namespace GanGao.School.Core.UserPermissions
         /// <param name="access"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public virtual Task<OperationResult> ValidatorUser(string access,string password)
+        public virtual Task<OperationResult> ValidatorUserAsync(string access,string password)
         {
             PublicHelper.CheckArgument(access, "access");
             PublicHelper.CheckArgument(password, "password");
@@ -230,7 +232,7 @@ namespace GanGao.School.Core.UserPermissions
                 return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在。"));
             }
             //校验密码
-            if (PasswordValidator.ValidatorPassword(user.PasswordHash, password))
+            if (PasswordValidator.VerifyHashedPassword(user.PasswordHash, password))
                 return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.Success));
             return Task.FromResult<OperationResult>(new OperationResult(OperationResultType.QueryNull, "指定账号的用户密码不正确。"));
         }
@@ -242,7 +244,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual Task<SysUser> FindById(string id)
+        public virtual Task<SysUser> FindByIdAsync(string id)
         {
             PublicHelper.CheckArgument(id, "id");
             var user = Repository.Entities.SingleOrDefault(m => m.Id.Equals(id));
@@ -257,7 +259,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public virtual Task<SysUser> FindByName(string name)
+        public virtual Task<SysUser> FindByNameAsync(string name)
         {
             PublicHelper.CheckArgument(name, "name");
             var user = Repository.Entities.SingleOrDefault(m => m.Name.Equals(name));
@@ -272,7 +274,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public virtual Task<SysUser> FindByEmail(string email)
+        public virtual Task<SysUser> FindByEmailAsync(string email)
         {
             PublicHelper.CheckArgument(email, "email");
             var user = Repository.Entities.SingleOrDefault(m => m.Email.Equals(email));
@@ -287,7 +289,7 @@ namespace GanGao.School.Core.UserPermissions
         /// </summary>
         /// <param name="access"></param>
         /// <returns></returns>
-        public virtual Task<SysUser> FindUser(string access)
+        public virtual Task<SysUser> FindUserAsync(string access)
         {
             PublicHelper.CheckArgument(access, "access");
             var user = Repository.Entities.SingleOrDefault(m => m.Name == access || m.Email == access);
@@ -303,20 +305,47 @@ namespace GanGao.School.Core.UserPermissions
         /// <param name="access"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public virtual async Task<SysUser> FindUser(string access, string password)
+        public virtual async Task<SysUser> FindUserAsync(string access, string password)
         {
             PublicHelper.CheckArgument(access, "access");
             PublicHelper.CheckArgument(password, "password");
             // 获取用户
-            var user = await FindUser(access);
+            var user = await FindUserAsync(access);
             if (user == null)
             {
                 return null;
             }
             //校验密码
-            if (PasswordValidator.ValidatorPassword(user.PasswordHash, password))
+            if (PasswordValidator.VerifyHashedPassword(user.PasswordHash, password))
                 return user;
             return null;
+        }
+        #endregion
+
+        #region   /// 分页相关
+        /// <summary>
+        /// 获取指定页用户集合
+        /// </summary>
+        /// <param name="Index"></param>
+        /// <param name="Limit"></param>
+        /// <param name="Order"></param>
+        /// <returns></returns>
+        public virtual Task<IEnumerable<SysUser>> UserPageListAsync(int Index, int Limit, string Order)
+        {
+            PublicHelper.CheckArgument(Order, "Order");
+            PublicHelper.CheckArgument(Index, "Index");
+            PublicHelper.CheckArgument(Limit, "Limit");
+            //获取记录数
+            var allCount = Repository.Entities.Count();
+            // 计算跳过记录数
+            var skip = (Index - 1) * Limit;
+            if (skip < 0 || skip > allCount || Limit<0)
+                return Task.FromResult <IEnumerable<SysUser>>(null);
+            // 获取排序查询
+            var query = Repository.Entities.OrderBy(Order);
+            // 获取分页数据
+            var users = query.Skip(skip).Take(Limit).ToList();
+            return Task.FromResult<IEnumerable<SysUser>>(users);
         }
         #endregion
 

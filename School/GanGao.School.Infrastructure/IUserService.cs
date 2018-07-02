@@ -1,6 +1,7 @@
 ﻿using GanGao.Component.Tools;
 using GanGao.School.Core.Models.UserPermissions;
 using GanGao.School.Core.ViewModels.UserPermissions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GanGao.School.Core.Infrastructure
@@ -21,26 +22,33 @@ namespace GanGao.School.Core.Infrastructure
         /// </summary>
         /// <param name="loginInfo">登录信息</param>
         /// <returns>业务操作结果</returns>
-        Task<OperationResult> Login(UserLoginInfoViewInput loginInfo);
+        Task<OperationResult> LoginAsync(UserLoginInfoViewInput loginInfo);
 
         /// <summary>
         ///     用户退出登录
         /// </summary>
         /// <param name="loginInfo">登录信息</param>
         /// <returns>业务操作结果</returns>
-        Task<OperationResult> Logout(UserLoginInfoViewInput loginInfo);
+        Task<OperationResult> LogoutAsync(UserLoginInfoViewInput loginInfo);
         /// <summary>
         /// 检查用户是否存在
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        Task<OperationResult> ExistsByName(string userName);
+        Task<OperationResult> ExistsByNameAsync(string userName);
         /// <summary>
         /// 检查用户是否存在
         /// </summary>
         /// <param name="emailName"></param>
         /// <returns></returns>
-        Task<OperationResult> ExistsByEmail(string emailName);
+        Task<OperationResult> ExistsByEmailAsync(string emailName);
+        /// <summary>
+        /// 校验用户名称密码
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        Task<OperationResult> ValidatorUserAsync(string access, string password);
         #endregion
 
         #region /// 用户增删改
@@ -54,34 +62,44 @@ namespace GanGao.School.Core.Infrastructure
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<SysUser> FindById(string id);
+        Task<SysUser> FindByIdAsync(string id);
         /// <summary>
         /// 按照名次查询用户
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        Task<SysUser> FindByName(string name);
+        Task<SysUser> FindByNameAsync(string name);
         /// <summary>
         /// 按照Email查询用户
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        Task<SysUser> FindByEmail(string email);
+        Task<SysUser> FindByEmailAsync(string email);
         /// <summary>
         /// 按照用户名获取Email查询用户
         /// </summary>
         /// <param name="access"></param>
         /// <returns></returns>
-        Task<SysUser> FindUser(string access);
+        Task<SysUser> FindUserAsync(string access);
         /// <summary>
         /// 根据用户名或Email，密码获取用户
         /// </summary>
         /// <param name="access"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Task<SysUser> FindUser(string access, string password);
+        Task<SysUser> FindUserAsync(string access, string password);
         #endregion
 
+        #region ///// 分页相关
+        /// <summary>
+        /// 获取指定页用户集合
+        /// </summary>
+        /// <param name="Index"></param>
+        /// <param name="Limit"></param>
+        /// <param name="Order"></param>
+        /// <returns></returns>
+        Task<IEnumerable<SysUser>> UserPageListAsync(int Index, int Limit, string Order);
+        #endregion
         #endregion
     }
 }

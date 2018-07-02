@@ -10,13 +10,13 @@
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        string PasswordHash(string password);
+        string HashPassword(string password);
         /// <summary>
         /// 校验密码正确性
         /// </summary>
         /// <param name="passwordHash"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        bool ValidatorPassword(string passwordHash, string password);
+        bool VerifyHashedPassword(string passwordHash, string password);
     }
 }
